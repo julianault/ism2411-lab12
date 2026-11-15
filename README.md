@@ -1,3 +1,3 @@
 # ISM2411 Lab 12 - Read a Sales CSV, Write a Cleaned Report
 Name: Julia Nault
-Run command: 'python3 csv_practice.py
+Run command: 'python3 csv_practice.py'
