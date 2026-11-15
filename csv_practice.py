@@ -1,7 +1,7 @@
 
 import csv
 
-total_revenue = 0
+sales_summary = {}
 
 with open("data/sales.csv", "r", newline="") as file:
     reader = csv.DictReader(file)
@@ -12,11 +12,14 @@ with open("data/sales.csv", "r", newline="") as file:
         quantity = int(row["quantity"])
 
         revenue = price * quantity
-        total_revenue += revenue
 
-        print(f"{product}: {quantity} units × ${price:.2f} = ${revenue:.2f}")
+        if product in sales_summary:
+            sales_summary[product] += revenue
+        else:
+            sales_summary[product] = revenue
 
-print(f"\nTotal revenue: ${total_revenue:.2f}")
+print("Sales Summary by Product:")
 
-# csv.reader is useful for simple files when you want to access columns by index.
-# csv.DictReader is easier to read when you want to access columns by their names.
+for product in sorted(sales_summary):
+    print(f"{product}: ${sales_summary[product]:.2f}")
+
