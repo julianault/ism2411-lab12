@@ -1,3 +1,11 @@
+# 1. Python can automate an ETL pipeline by reading, cleaning, and organizing
+# large amounts of data quickly. Excel is easier for manually editing data,
+# creating charts, and looking at information visually. Python is better for
+# repeating tasks and processing large files automatically.
+# 2. A business could use an append-mode log file to track customer orders.
+# Each new order could be added to the file with its date, time, and details.
+# Append mode is useful because it saves new orders without deleting old ones,
+# keeping a record of all past transactions.
 
 import csv
 from datetime import datetime
