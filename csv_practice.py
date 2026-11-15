@@ -1,32 +1,22 @@
 
 import csv
 
-total_rows = 0
-cleaned_rows = 0
+total_revenue = 0
 
-with open("data/sales.csv", "r", newline="") as infile:
-    reader = csv.reader(infile)
+with open("data/sales.csv", "r", newline="") as file:
+    reader = csv.DictReader(file)
 
-    header = next(reader)
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
 
-    with open("data/cleaned.csv", "w", newline="") as outfile:
-        writer = csv.writer(outfile)
+        revenue = price * quantity
+        total_revenue += revenue
 
-        writer.writerow(["Product", "Price", "Qty", "Total"])
+        print(f"{product}: {quantity} units × ${price:.2f} = ${revenue:.2f}")
 
-        for row in reader:
-            total_rows += 1
+print(f"\nTotal revenue: ${total_revenue:.2f}")
 
-            product = row[0]
-            price = float(row[1])
-            quantity = int(row[2])
-
-            total = price * quantity
-
-            if total > 100:
-                writer.writerow([product, price, quantity, total])
-                cleaned_rows += 1
-
-print(f"Rows in original file: {total_rows}")
-print(f"Rows written to cleaned.csv: {cleaned_rows}")
-
+# csv.reader is useful for simple files when you want to access columns by index.
+# csv.DictReader is easier to read when you want to access columns by their names.
